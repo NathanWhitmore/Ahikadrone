@@ -187,6 +187,8 @@ supervised <- function(seed = TRUE, shrink = 10){
 
   x <- raster::as.data.frame(levels(dfr))
 
+  print(head(x))
+
   message("make table to describe factors B")
 
   x$vege_type <- vege.types
