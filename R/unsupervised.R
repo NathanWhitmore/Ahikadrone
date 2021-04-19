@@ -87,12 +87,12 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
 
   message("Step 3: image segmentation starting")
 
-  Region.slic <- superpixels(input_image = my.image,
+  Region.slic <- suppressWarnings(superpixels(input_image = my.image,
                              method = "slic",
                              superpixel = super/conv.factor,
                              return_slic_data = TRUE,
                              return_labels = TRUE, write_slic = "",
-                             verbose = FALSE)
+                             verbose = FALSE))
 
   imageShow(Region.slic$slic_data)
 
@@ -101,7 +101,7 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
   # actual segmentation using Affinity Propagation
   init <- Image_Segmentation$new()
 
-  Region.seg <- init$spixel_segmentation(input_image = my.image,
+  Region.seg <- suppressWarnings(init$spixel_segmentation(input_image = my.image,
                                          superpixel = super/conv.factor,
                                          AP_data = TRUE,
                                          use_median = TRUE,
@@ -109,7 +109,7 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
                                          sim_wA = 10,
                                          sim_wB = 10,
                                          sim_color_radius = 10,
-                                         verbose = TRUE)
+                                         verbose = TRUE))
 
 
   imageShow(Region.seg$AP_image_data)
