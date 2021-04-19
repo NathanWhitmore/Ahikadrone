@@ -132,7 +132,7 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
   message("Step 5: k-means clustering starting")
 
   # kmeans clustering from raster
-  vege.df <- as.data.frame(sr.1)
+  vege.df <- raster::as.data.frame(sr.1)
 
   if(clusters > length(unique(mon.rast))){
     clusters <- length(unique(mon.rast))
