@@ -156,7 +156,7 @@ supervised <- function(seed = TRUE, shrink = 10){
   message("prediction")
 
   # prediction
-  pred.values <- raster::predict(train.rf,  pca.raster.df)
+  pred.values <- predict(train.rf,  pca.raster.df)
 
   # make new df
   my.data <- pca.raster.df
