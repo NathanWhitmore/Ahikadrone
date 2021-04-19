@@ -8,5 +8,5 @@ Description: Supervised and undsupervised vegetation classification
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: OpenImageR, SuperpixelImageSegmentation, raster, png, sp, sf, tidyverse, smoothr, units, rgeos, factoextra, caret, janitor, RStoolbox
+Imports: OpenImageR, SuperpixelImageSegmentation, raster, png, sp, sf, tidyverse, smoothr, units, rgeos, factoextra, caret, janitor, RStoolbox
 RoxygenNote: 7.1.1
