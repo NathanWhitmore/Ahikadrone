@@ -161,6 +161,8 @@ supervised <- function(seed = TRUE, shrink = 10){
   # make new df
   my.data <- pca.raster.df
 
+  print(head(my.data))
+
   # layer names
   my.data$vege_pred <- pred.values
 
@@ -168,6 +170,8 @@ supervised <- function(seed = TRUE, shrink = 10){
 
   # change data to numeric
   my.data$vege <- as.numeric(my.data$vege_pred)
+
+  print(head(my.data))
 
   message("change df to raster")
 
@@ -178,9 +182,13 @@ supervised <- function(seed = TRUE, shrink = 10){
   dfr <- rasterFromXYZ(my.data)  #Convert first two columns as lon-lat and third as value
   crs(dfr) <- crs(region.brick)
 
+  print(dfr)
+
   message("change dfr")
   # make into factor
   dfr <- raster::as.factor(dfr)
+
+  print(dfr)
 
   message("make table to describe factors A")
 
