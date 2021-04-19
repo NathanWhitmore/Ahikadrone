@@ -24,6 +24,7 @@ unsupervised(type, super, clusters, shrink)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
+
   \item{type}{
 One of 7 analysis types:
 
@@ -60,5 +61,5 @@ unsupervised(type = "ndre",
             super = 200,
             shrink = 10)
   }
-}
-.
+
+
