@@ -159,6 +159,8 @@ supervised <- function(seed = TRUE, shrink = 10){
   # prediction
   pred.values <- raster::predict(train.rf,  pca.raster.df)
 
+
+
   # make new df
   my.data <- pca.raster.df
 
@@ -170,7 +172,7 @@ supervised <- function(seed = TRUE, shrink = 10){
   # change data to numeric
   my.data$vege <- as.numeric(my.data$vege_pred)
 
-  message("chnage df to raster")
+  message("change df to raster")
 
   # change df to raster
   my.data <- my.data[, c(1,2,length(my.data))]
@@ -179,9 +181,11 @@ supervised <- function(seed = TRUE, shrink = 10){
   dfr <- rasterFromXYZ(my.data)  #Convert first two columns as lon-lat and third as value
   crs(dfr) <- crs(region.brick)
 
+  message("change dfr")
   # make into factor
   dfr <- raster::as.factor(dfr)
 
+  message("make table to describe factors")
 
   # make table to describe factors
   x <- raster::as.data.frame(levels(dfr))
