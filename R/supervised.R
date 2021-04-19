@@ -183,16 +183,18 @@ supervised <- function(seed = TRUE, shrink = 10){
   # make into factor
   dfr <- raster::as.factor(dfr)
 
-  message("make table to describe factors")
+  message("make table to describe factors A")
 
-  # make table to describe factors A
+
   x <- raster::as.data.frame(levels(dfr))
 
-  # make table to describe factors B
+  message("make table to describe factors B")
+
   x$vege_type <- vege.types
 
-  # make table to describe factors C
-  levels(dfr) <- x
+  message("make table to describe factors C")
+
+  raster::levels(dfr) <- x
 
   message("Step 6: writing polygons")
 
