@@ -152,7 +152,7 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
   }
 
   # Compute and plot wss for k = 1 to max unique clusters
-  k.values <- 2:length(unique(mon.rast))
+  k.values <- 2:length(raster::unique(mon.rast))
 
   # extract wss for 2-15 clusters
   wss_values <- map_dbl(k.values, wss)
