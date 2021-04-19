@@ -134,8 +134,8 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
   # kmeans clustering from raster
   vege.df <- raster::as.data.frame(sr.1)
 
-  if(clusters > length(unique(mon.rast))){
-    clusters <- length(unique(mon.rast))
+  if(clusters > length(raster::unique(mon.rast))){
+    clusters <- length(raster::unique(mon.rast))
   } else   {
     clusters <- clusters
   }
