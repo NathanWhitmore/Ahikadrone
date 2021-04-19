@@ -1,4 +1,6 @@
 
+
+
 supervised <- function(seed = TRUE, shrink = 10){
 
   if(seed == TRUE) {set.seed(27)} else {set.seed(NULL)}
@@ -114,8 +116,6 @@ supervised <- function(seed = TRUE, shrink = 10){
   cm <- confusionMatrix(train.rf)
 
   # confusion matrix output
-
-
   df.con <- as.data.frame(cm$table)
   wide.con <- df.con %>% pivot_wider(names_from = Reference, values_from = Freq)
   diag <- diag(as.matrix(wide.con[,-1]))
@@ -137,7 +137,7 @@ supervised <- function(seed = TRUE, shrink = 10){
 
   print(output)
 
-  # save outpu
+  # save output
   capture.output(output, file = paste0(out.dir, "\\", output.name,"_supervised", ".txt"), append = FALSE)
 
 
@@ -158,8 +158,6 @@ supervised <- function(seed = TRUE, shrink = 10){
 
   # prediction
   pred.values <- raster::predict(train.rf,  pca.raster.df)
-
-
 
   # make new df
   my.data <- pca.raster.df
@@ -187,9 +185,13 @@ supervised <- function(seed = TRUE, shrink = 10){
 
   message("make table to describe factors")
 
-  # make table to describe factors
+  # make table to describe factors A
   x <- raster::as.data.frame(levels(dfr))
+
+  # make table to describe factors B
   x$vege_type <- vege.types
+
+  # make table to describe factors C
   levels(dfr) <- x
 
   message("Step 6: writing polygons")
