@@ -193,7 +193,7 @@ supervised <- function(seed = TRUE, shrink = 10){
   message("make table to describe factors A")
 
 
-  x <- raster::as.data.frame(levels(dfr))
+  x <- as.data.frame(raster::levels(dfr))
 
   print(head(x))
 
