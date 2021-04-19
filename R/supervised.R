@@ -203,7 +203,7 @@ supervised <- function(seed = TRUE, shrink = 10){
 
   message("make table to describe factors C")
 
-  raster::levels(dfr) <- x
+  levels(dfr) <- x
 
   message("Step 6: writing polygons")
 
