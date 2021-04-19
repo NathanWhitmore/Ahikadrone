@@ -139,7 +139,6 @@ supervised <- function(seed = TRUE, shrink = 10){
   # save output
   capture.output(output, file = paste0(out.dir, "\\", output.name,"_supervised", ".txt"), append = FALSE)
 
-
   # make predictions based on pca
   pca.df$test <- predict(train.rf,  pca.df)
 
@@ -153,27 +152,17 @@ supervised <- function(seed = TRUE, shrink = 10){
   # rename
   colnames(pca.raster.df) <- c("x", "y", paste0("Comp.", 1:ncol(pca$scores)))
 
-  message("prediction")
-
   # prediction
   pred.values <- predict(train.rf,  pca.raster.df)
 
   # make new df
   my.data <- pca.raster.df
 
-  print(head(my.data))
-
   # layer names
   my.data$vege_pred <- pred.values
 
-  # change to raster
-
   # change data to numeric
   my.data$vege <- as.numeric(my.data$vege_pred)
-
-  print(head(my.data))
-
-  message("change df to raster")
 
   # change df to raster
   my.data <- my.data[, c(1,2,length(my.data))]
@@ -182,27 +171,10 @@ supervised <- function(seed = TRUE, shrink = 10){
   dfr <- rasterFromXYZ(my.data)  #Convert first two columns as lon-lat and third as value
   crs(dfr) <- crs(region.brick)
 
-  print(dfr)
-
-  message("change dfr")
   # make into factor
   dfr <- raster::as.factor(dfr)
-
-  print(dfr)
-
-  message("make table to describe factors A")
-
-
   x <- as.data.frame(raster::levels(dfr))
-
-  print(head(x))
-
-  message("make table to describe factors B")
-
   x$vege_type <- vege.types
-
-  message("make table to describe factors C")
-
   levels(dfr) <- x
 
   message("Step 6: writing polygons")
