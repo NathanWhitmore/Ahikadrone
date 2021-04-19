@@ -8,5 +8,3 @@ Description: Supervised and undsupervised vegetation classification
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: OpenImageR
-RoxygenNote: 7.1.1
