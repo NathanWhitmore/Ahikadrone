@@ -194,10 +194,10 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
 
 
   # write to shp for QGIS
-  st_write(vege.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_clusters", ".shp"),
-           driver = "ESRI Shapefile", append =FALSE)
-  st_write(pix.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_superpixel", ".shp"),
-           driver = "ESRI Shapefile", append =FALSE)
+  suppressWarnings(st_write(vege.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_clusters", ".shp"),
+           driver = "ESRI Shapefile", append =FALSE))
+  suppressWarnings(st_write(pix.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_superpixel", ".shp"),
+           driver = "ESRI Shapefile", append =FALSE))
 
 }
 

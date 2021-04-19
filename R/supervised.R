@@ -219,6 +219,6 @@ supervised <- function(seed = TRUE, shrink = 10){
   vege.sf$vege_type <- vege.types
 
   # write to shp for QGIS
-  st_write(vege.sf, paste0(out.dir, "\\", output.name,"_supervised",".shp"), driver = "ESRI Shapefile", append=FALSE)
+  suppressWarnings(st_write(vege.sf, paste0(out.dir, "\\", output.name,"_supervised",".shp"), driver = "ESRI Shapefile", append=FALSE))
 
 }
