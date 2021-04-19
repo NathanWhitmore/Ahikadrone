@@ -13,6 +13,12 @@ library("remotes")
 install_github("NathanWhitmore/Ahikadrone")
 ```
 
+if there is already a previous version installed you should use :
+
+```
+install_github("NathanWhitmore/Ahikadrone",  force = TRUE)
+```
+
 and then load the package via:
 ```
 library("Ahikadrone")
