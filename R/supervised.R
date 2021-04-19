@@ -154,8 +154,10 @@ supervised <- function(seed = TRUE, shrink = 10){
   # rename
   colnames(pca.raster.df) <- c("x", "y", paste0("Comp.", 1:ncol(pca$scores)))
 
+  message("prediction")
+
   # prediction
-  pred.values <- predict(train.rf,  pca.raster.df)
+  pred.values <- raster::predict(train.rf,  pca.raster.df)
 
   # make new df
   my.data <- pca.raster.df
@@ -168,6 +170,7 @@ supervised <- function(seed = TRUE, shrink = 10){
   # change data to numeric
   my.data$vege <- as.numeric(my.data$vege_pred)
 
+  message("chnage df to raster")
 
   # change df to raster
   my.data <- my.data[, c(1,2,length(my.data))]
