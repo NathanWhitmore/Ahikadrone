@@ -148,7 +148,7 @@ supervised <- function(seed = TRUE, shrink = 10){
   # PCA on entire raster
   pca.raster <- rasterPCA(region.brick, nSamples = 1000)
 
-  pca.raster.df <- as.data.frame(pca.raster$map, xy = TRUE)
+  pca.raster.df <- raster::as.data.frame(pca.raster$map, xy = TRUE)
   pca.raster.df <- na.omit(pca.raster.df)
 
   # rename
@@ -177,11 +177,11 @@ supervised <- function(seed = TRUE, shrink = 10){
   crs(dfr) <- crs(region.brick)
 
   # make into factor
-  dfr <- as.factor(dfr)
+  dfr <- raster::as.factor(dfr)
 
 
   # make table to describe factors
-  x <- as.data.frame(levels(dfr))
+  x <- raster::as.data.frame(levels(dfr))
   x$vege_type <- vege.types
   levels(dfr) <- x
 
