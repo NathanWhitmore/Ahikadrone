@@ -57,20 +57,19 @@ supervised <- function(seed = TRUE, shrink = 10){
   # make count (IMPORTANT)
   supervised$code <- as.numeric(as.factor(supervised$VegType))
 
+  # unique vege names and number
+  vege.names.no <- length(unique(supervised$code))
+  vege.types <- sort(unique(supervised$VegType))
+
   # change to spatial type
   supervised <- as_Spatial(supervised)
 
   # mask
   masked.brick <- mask(region.brick, supervised, sp = TRUE)
 
-  # Transform non-NA values to 1
-  counter <- masked.brick
-  counter[!is.na(counter)] <- 1
-  cellStats(counter, stat = "sum")
-
-  # unique vege names and number
-  vege.names.no <- length(unique(supervised$code))
-  vege.types <- sort(unique(supervised$VegType))
+  print(vege.names.no)
+  print(vege.types)
+  class(vege.types)
 
 
   # for loop to extract as separate layers
