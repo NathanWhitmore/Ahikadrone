@@ -3,8 +3,10 @@
 
 supervised <- function(seed = TRUE, shrink = 10){
 
-  if(seed == TRUE) {set.seed(27)} else {set.seed(NULL)}
+  if(seed == TRUE) {start <- 27} else {start <- NULL}
 
+
+  print(start)
 
   # find folder
   dir <- choose.dir(default = "", caption = "Select folder which contains DJI drone imagery\nNote: only select the exterior folder")
@@ -189,5 +191,5 @@ supervised <- function(seed = TRUE, shrink = 10){
   # write to shp for QGIS
   suppressWarnings(st_write(vege.sf, paste0(out.dir, "\\", output.name,"_supervised",".shp"), driver = "ESRI Shapefile", append=FALSE))
 
-  message("Process COMPLETE")
+  message("Process completed")
 }
