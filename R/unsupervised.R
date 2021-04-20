@@ -162,7 +162,7 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
   elbow.graph <- ggplot()+
     geom_line(aes(x=k.values, y=wss_values))+
     geom_point(aes(x=k.values, y=wss_values))+
-    scale_x_continuous(breaks = 1:15)+
+    scale_x_continuous(breaks = 1:max(k.values))+
     labs(x="\nNumber of clusters",
          y="Total within-clusters sum of squares\n",
          title = paste0(output.name,"_", type, "\nClustering check using elbow method"))

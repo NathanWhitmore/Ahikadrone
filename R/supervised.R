@@ -67,11 +67,6 @@ supervised <- function(seed = TRUE, shrink = 10){
   # mask
   masked.brick <- mask(region.brick, supervised, sp = TRUE)
 
-  print(vege.names.no)
-  print(vege.types)
-  class(vege.types)
-
-
   # for loop to extract as separate layers
   ground_truth <- NULL
   my.extract <- NULL
