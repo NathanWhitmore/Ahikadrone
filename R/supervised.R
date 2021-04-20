@@ -3,10 +3,7 @@
 
 supervised <- function(seed = TRUE, shrink = 10){
 
-  if(seed == TRUE) {start <- 27} else {start <- NULL}
-
-
-  print(start)
+  if(seed == TRUE) {set.seed(27)} else {set.seed(Sys.time())}
 
   # find folder
   dir <- choose.dir(default = "", caption = "Select folder which contains DJI drone imagery\nNote: only select the exterior folder")
