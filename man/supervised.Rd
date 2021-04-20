@@ -18,7 +18,7 @@ The function will report messages indicating progress through 6 steps:
 \item \code{Step 6}: writing polygons
 }
 
-\bold{Note:} Ideally each training class should contain a minimum of 200x \code{shink} pixels across all polygons for each vegetation type. For example,  for a raster in which a 20x shrink will be used, a minimum of 4000 pixels would be required to be preidentified in order to recognise the "pine" class. This is because the algorithm produces a training dataset by randomly sampling 200 points within each training class without replacement in order to prevent class imbalances from occurring.
+\bold{Note:} Ideally each training class should contain a minimum of 200 pixels across all polygons for each vegetation type. For example, if a 20x shrink is planned, a minimum of 4000 pixels would be required to be preidentified in order to recognise a specific vegetation class e.g. "pine". This is because, in order to prevent class imbalances from occurring, the algorithm needs to sample the training dataset by randomly sampling 200 pixels within each training class after shrinking has occurred. Failure to do this will result in a class imbalance. For rare vegetation classes this may be unavoidable.
 }
 
 \usage{
@@ -36,20 +36,11 @@ if TRUE a fixed seed will be used for random number generation which means the r
 }
 \details{
 The function operates by first aggregating the raster images (using median values) to a smaller size so that they are manageable by a desktop PC, then reduces all multispectral channels (blue, green, red, red edge, and near infra-red) and derived index layers (NDVI, GNDVI, LCI, NDRE, and OSAVI) into uncorrelated explanatory variables using principle component analysis (note: visible light wavelengths remain important for discrimination of non-photosynthetic land-use classes). These explanatory variables are then used to predict the response variable (vegetation type) given by the training shape file using the random forest machine learning algorithm and tuned using 5-fold cross validation.
-Two outputs are produced (1) a text summary of the accuracy of the random forest algorithm and identification of any vegetation classes under-represented in the training shape file and (2) the ESRI shape files associated with the vegetation classes.
-Based on the class imbalances identified in the analysis the user may want to increase the size of the polygons in the training shape files if they appear to be under-represented. Ideally, the training file should identify examples of vegetation classes that are both representative of the variation present in the image and relatively homogeneous in terms of their composition (e.g. polygons identifying pine should avoid including another species such as manuka).
+Two outputs are produced (1) a text summary of the accuracy of the random forest algorithm and identification of any vegetation classes under-represented in the training shape file and (2) the ESRI shape files associated with the vegetation classes. Any polygons 1 square metre or less are purposely removed to prevent the shapefiles by being overwhelmed by noise. Based on the class imbalances identified in the analysis the user may want to increase the size of the polygons in the training shape files if they appear to be under-represented. Ideally, the training file should identify examples of vegetation classes that are both representative of the variation present in the image and relatively homogeneous in terms of their composition (e.g. polygons identifying pine should avoid including another species such as manuka).
 }
 
 
 \examples{
-supervised((seed = TRUE, shrink = 10)
+supervised(shrink = 10, seed = TRUE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
+
