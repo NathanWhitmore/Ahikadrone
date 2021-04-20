@@ -182,10 +182,12 @@ supervised <- function(seed = TRUE, shrink = 10){
   # change to sf for easier handling
   vege.sf <- st_as_sf(decrumbed)
 
-  # add actual levels to sf as these have been lost
+  # add actual levels to sf as these have been lost remove vege
   vege.sf$vege_type <- vege.types
+  vege.sf$vege <- NULL
 
   # write to shp for QGIS
   suppressWarnings(st_write(vege.sf, paste0(out.dir, "\\", output.name,"_supervised",".shp"), driver = "ESRI Shapefile", append=FALSE))
 
+  message("Process completed")
 }
