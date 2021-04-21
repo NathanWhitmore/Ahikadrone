@@ -1,20 +1,3 @@
-library("OpenImageR")
-library("SuperpixelImageSegmentation")
-library(raster)
- library(       png)
-  library(      sp)
-  library(      sf)
-  library(      tidyverse)
-  library(      smoothr)
-  library(      units)
-  library(      rgeos)
-  library(      randomForest)
-  library(      lwgeom)
-   library(     factoextra)
-  library(      caret)
-   library(     janitor)
-   library(     RStoolbox)
-
 
 supervised <- function(shrink = 10){
 
@@ -205,5 +188,3 @@ supervised <- function(shrink = 10){
 }
 
 
-set.seed(0)
-supervised(shrink =10)
