@@ -103,6 +103,10 @@ supervised <- function(seed = TRUE, shrink = 10){
 
   message("Step 5: undertaking random forests")
 
+  set.seed(start)
+  print(start)
+  print(rnorm(1,10,1))
+
   # randomforest
   cross.val <- trainControl(method = "cv", number = 5)
   train.rf <- train(vege_type ~ .,
