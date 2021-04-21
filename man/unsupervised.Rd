@@ -54,7 +54,7 @@ A number representing how pixels in each direction (horizontally and vertically)
 
 \details{
 Two automatically named polygon files will be returned: one containing the clustered polygons, and the other containing the polygons of the superpixels (image segments).
-An automatically named elbow plot will be produced as a .png file. While there is no set rule for determining the number of clusters, many people look for an inflection point (the elbow, or knee) in this graph as a guide to determining the correct number of clusters. A .jpg of the spectral selection (\code{type}) will also be produced (this is required for an intermediate step in the image processing).
+An automatically named elbow plot will be produced as a .png file. While there is no set rule for determining the number of clusters, many people look for an inflection point (the elbow, or knee) in this graph as a guide to determining the correct number of clusters (the maximum number of clusters visualised in the plot is 15). A .jpg of the spectral selection (\code{type}) will also be produced (this is required for an intermediate step in the image processing).
 }
 
 
