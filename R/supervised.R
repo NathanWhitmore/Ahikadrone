@@ -1,14 +1,7 @@
 
 
 
-supervised <- function(seed = TRUE, shrink = 10){
-
-
-  if(seed == TRUE) {start <- 27} else {start <- Sys.time()}
-
-  set.seed(start)
-  print(start)
-  print(rnorm(1,10,1))
+supervised <- function(shrink = 10){
 
   # find folder
   dir <- choose.dir(default = "", caption = "Select folder which contains DJI drone imagery\nNote: only select the exterior folder")
@@ -102,10 +95,6 @@ supervised <- function(seed = TRUE, shrink = 10){
   pca.df <- cbind(pca$scores, data.frame(vege_type = my.extract[,length(my.extract)]))
 
   message("Step 5: undertaking random forests")
-
-  set.seed(start)
-  print(start)
-  print(rnorm(1,10,1))
 
   # randomforest
   cross.val <- trainControl(method = "cv", number = 5)
