@@ -2,8 +2,6 @@
 
 unsupervised <- function(type, super = 200, clusters, shrink = 10){
 
-  set.seed(27)
-
 
   # find folder
   dir <- choose.dir(default = "", caption = "Select folder which contains DJI drone imagery\nNote: only select the exterior folder")

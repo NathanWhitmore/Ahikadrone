@@ -22,7 +22,7 @@ The function will report messages indicating progress through 6 steps:
 }
 
 \usage{
-supervised(shrink = 10, seed = TRUE)
+supervised(shrink = 10)
 }
 
 %- maybe also 'usage' for other objects documented here.
@@ -30,9 +30,7 @@ supervised(shrink = 10, seed = TRUE)
   \item{seed}{
 a number representing how pixels in each direction (horizontally and vertically) should be aggregated together. A shrink of 10 will result in a raster image 100 x smaller than the original. The default is set to 10. Failure to shrink may result in the computer crashing as it may lack the RAM necessary for the calculations associated with very large rasters.
 }
-  \item{shrink}{
-if TRUE a fixed seed will be used for random number generation which means the results will be reproducible if rerun. The default is set to TRUE.
-}
+
 }
 \details{
 The function operates by first aggregating the raster images (using median values) to a smaller size so that they are manageable by a desktop PC, then reduces all multispectral channels (blue, green, red, red edge, and near infra-red) and derived index layers (NDVI, GNDVI, LCI, NDRE, and OSAVI) into uncorrelated explanatory variables using principle component analysis (note: visible light wavelengths remain important for discrimination of non-photosynthetic land-use classes). These explanatory variables are then used to predict the response variable (vegetation type) given by the training shape file using the random forest machine learning algorithm and tuned using 5-fold cross validation.
@@ -41,6 +39,6 @@ Two outputs are produced (1) a text summary of the accuracy of the random forest
 
 
 \examples{
-supervised(shrink = 10, seed = TRUE)
+supervised(shrink = 10)
 }
 
