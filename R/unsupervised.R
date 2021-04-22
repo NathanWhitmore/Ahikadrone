@@ -184,6 +184,8 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
 
   # change to sf for easier handling
   vege.sf <- st_as_sf(orig.poly)
+  vege.sf$ID <- 1:nrow(vege.sf)
+  vege.sf$layer <- NULL
 
   # assign vege.sf to superpixels
   pix.raster <- raster(Region.slic$labels)
