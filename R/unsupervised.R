@@ -184,7 +184,8 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
 
   # change to sf for easier handling
   vege.sf <- st_as_sf(orig.poly)
-  vege.sf <- vege.sf %>% rename(cluster = ID)
+  vege.sf <- vege.sf %>% rename(clusters = layer)
+
 
   # assign vege.sf to superpixels
   pix.raster <- raster(Region.slic$labels)
@@ -194,6 +195,7 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
   # super pixel rendering
   pix.poly <- rasterToPolygons(pix.raster, na.rm=TRUE, dissolve = TRUE)
   pix.sf <- st_as_sf(pix.poly)
+  pix.sf <- pix.sf %>% rename(superpixels = layer)
 
   # write to shp for QGIS
   suppressWarnings(st_write(vege.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_clusters", ".shp"),
