@@ -1,6 +1,6 @@
 
 
-unsupervised <- function(type, super = 200, clusters, shrink = 10){
+unsupervised <- function(type, super = 200, clusters, shrink = 10, both = FALSE){
 
 
   # find folder
@@ -176,6 +176,9 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
 
   message("Step 6: polygon writing")
 
+
+  if(both == "FALSE"){
+
   # mask sr.1
   final <- mask(k.clusters, region.brick[[1]])
 
@@ -186,22 +189,42 @@ unsupervised <- function(type, super = 200, clusters, shrink = 10){
   vege.sf <- st_as_sf(orig.poly)
   vege.sf <- vege.sf %>% rename(clusters = layer)
 
-
-  # assign vege.sf to superpixels
-  pix.raster <- raster(Region.slic$labels)
-  crs(pix.raster) <- crs(sr.1)
-  extent(pix.raster) <- extent(sr.1)
-
-  # super pixel rendering
-  pix.poly <- rasterToPolygons(pix.raster, na.rm=TRUE, dissolve = TRUE)
-  pix.sf <- st_as_sf(pix.poly)
-  pix.sf <- pix.sf %>% rename(superpixels = layer)
-
   # write to shp for QGIS
   suppressWarnings(st_write(vege.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_clusters", ".shp"),
-           driver = "ESRI Shapefile", append =FALSE))
-  suppressWarnings(st_write(pix.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_superpixel", ".shp"),
-           driver = "ESRI Shapefile", append =FALSE))
+                            driver = "ESRI Shapefile", append =FALSE))
+
+  } else {
+
+    final <- mask(k.clusters, region.brick[[1]])
+
+    # change to polygon
+    orig.poly <- rasterToPolygons(final, na.rm=TRUE, dissolve = TRUE)
+
+    # change to sf for easier handling
+    vege.sf <- st_as_sf(orig.poly)
+    vege.sf <- vege.sf %>% rename(clusters = layer)
+
+    # write to shp for QGIS
+    suppressWarnings(st_write(vege.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_clusters", ".shp"),
+                              driver = "ESRI Shapefile", append =FALSE))
+
+    # assign vege.sf to superpixels
+    pix.raster <- raster(Region.slic$labels)
+    crs(pix.raster) <- crs(sr.1)
+    extent(pix.raster) <- extent(sr.1)
+
+    # super pixel rendering
+    pix.poly <- rasterToPolygons(pix.raster, na.rm=TRUE, dissolve = TRUE)
+    pix.sf <- st_as_sf(pix.poly)
+    pix.sf <- pix.sf %>% rename(superpixels = layer)
+
+    # write to shp for QGIS
+    suppressWarnings(st_write(pix.sf, paste0(out.dir, "\\", output.name, "_unsupervised_", type,"_superpixel", ".shp"),
+                              driver = "ESRI Shapefile", append =FALSE))
+
+
+
+  }
 
   message("Process completed")
 
