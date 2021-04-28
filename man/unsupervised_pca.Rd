@@ -35,12 +35,11 @@ unsupervised_pca(shrink = 10, nsamples = 5000, denoise = 5)
 \item{shrink:}{
 A number representing how pixels in each direction (horizontally and vertically) should be aggregated together. A shrink of 10 will result in a raster image 100 x smaller than the original. The default is set to 10. Failure to shrink may result in the computer crashing as it may lack the RAM necessary for the calculations associated with very large rasters.
 }
-
-\item{denoise:}{
-A number representing a window of pixels in each direction (horizontally and vertically) that will be used to smooth the local neighbourhood using modal values. This will effectively lessen the noise present in the raster. A default of 5 is used.
-}
 \item{nsamples:}{
 The number of samples used to build the PCA through subsampling. A default of 5000 is used. Higher values will increase processing time.
+}
+\item{denoise:}{
+An odd number representing a window of pixels in each direction (horizontally and vertically) that will be used to smooth the local neighbourhood using modal values. This will effectively lessen the noise present in the raster. A default of 5 is used. NOTE: the number given must be odd (this because the pixel window must surround a single, interior central pixel).
 }
 
 }

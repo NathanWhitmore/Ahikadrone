@@ -1,6 +1,8 @@
 
 unsupervised_pca <- function(shrink = 10, nsamples = 5000, denoise = 5){
 
+  if(denoise %% 2 == 0) stop('Denoise is not odd')
+
 
   # find folder
   dir <- choose.dir(default = "", caption = "Select folder which contains DJI drone imagery\nNote: only select the exterior folder")
