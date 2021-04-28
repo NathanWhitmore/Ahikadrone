@@ -45,7 +45,7 @@ unsupervised_pca <- function(shrink = 10, nsamples = 5000, denoise = 5){
   pca_sample <-  princomp(df_sample[,-c(1,2)])
   pca.sample.df <- as.data.frame(cbind(pca_sample$scores))
 
-  message("Step 4: Choose dimensions based on screeplot")
+  message("Step 4: choose dimensions based on screeplot")
 
   print(fviz_eig(pca_sample))
 
@@ -54,7 +54,7 @@ unsupervised_pca <- function(shrink = 10, nsamples = 5000, denoise = 5){
   # dimension reduction based on user
   pca.sample.df <- pca.sample.df[, 1: my.dim]
 
-  message("Step 5: Hierarchical clustering to guide number of clusters")
+  message("Step 5: hierarchical clustering to guide number of clusters")
 
   # hierarchical clustering to guess number of clusters
   # cult.results <- HCPC(pca.sample.df, min = min.clusters , max = max.clusters , graph = FALSE)
@@ -70,7 +70,7 @@ unsupervised_pca <- function(shrink = 10, nsamples = 5000, denoise = 5){
   # initial plot
   plot(dendro, labels = FALSE)
 
-  message("Step 6: Choose number of clusters")
+  message("Step 6: choose number of clusters")
   my.cuts <- as.numeric(readline(prompt="Enter number of clusters: "))
 
   # replot
@@ -83,7 +83,7 @@ unsupervised_pca <- function(shrink = 10, nsamples = 5000, denoise = 5){
   # new data frame
   data.clusters <-  cbind(pca.sample.df, clust)
 
-  message("Step 7: Randomforest extrapolation of clustering")
+  message("Step 7: Random forest extrapolation of clustering")
 
   # randomforest
   cross.val <- trainControl(method = "cv", number = 5)
