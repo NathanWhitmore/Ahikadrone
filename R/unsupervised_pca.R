@@ -122,7 +122,7 @@ unsupervised_pca <- function(shrink = 10, nsamples = 5000, denoise = 5){
   message("Step 9: polygon writing")
 
   # change to polygon
-  orig.poly <- rasterToPolygons(focused, na.rm=TRUE, dissolve = TRUE)
+  orig.poly <- st_as_stars(focused) %>% st_as_sf(merge=TRUE)
 
   # change to sf for easier handling
   pca.sf <- st_as_sf(orig.poly)

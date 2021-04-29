@@ -170,7 +170,7 @@ supervised <- function(shrink = 10){
   message("Step 6: writing polygons")
 
   # change to polygon
-  orig.poly <- rasterToPolygons(dfr, na.rm=TRUE, dissolve=TRUE)
+  orig.poly <- st_as_stars(dfr) %>% st_as_sf(merge=TRUE)
 
   decrumbed <- drop_crumbs(orig.poly, set_units(1, m^2))
 
