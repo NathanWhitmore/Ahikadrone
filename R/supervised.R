@@ -172,13 +172,14 @@ supervised <- function(shrink = 10){
   # change to polygon
   orig.poly <- st_as_stars(dfr) %>% st_as_sf(merge=TRUE)
 
+  # decrumb
   decrumbed <- drop_crumbs(orig.poly, set_units(1, m^2))
 
   # change to sf for easier handling
   vege.sf <- st_as_sf(decrumbed)
 
   # add actual levels to sf as these have been lost remove vege
-  vege.sf$vege <- vege.types
+ # vege.sf$vege <- vege.types
   vege.sf <- vege.sf %>% rename(vege_type = vege)
 
   # write to shp for QGIS
